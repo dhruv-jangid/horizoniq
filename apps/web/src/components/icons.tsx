@@ -1,14 +1,15 @@
 import {
-  Sun,
-  Moon,
   Cloud,
-  CloudSun,
   CloudFog,
-  Snowflake,
+  CloudLightning,
   CloudMoon,
   CloudRain,
-  CloudLightning,
-} from "lucide-react";
+  CloudSun,
+  Moon,
+  Snowflake,
+  Sun,
+} from "@hugeicons/core-free-icons";
+import type { IconSvgElement } from "@hugeicons/react";
 
 export type WeatherIconCode =
   | "01d"
@@ -30,23 +31,23 @@ export type WeatherIconCode =
   | "50d"
   | "50n";
 
-export const iconMap: Record<WeatherIconCode, React.JSX.Element> = {
-  "01d": <Sun size={22} />,
-  "01n": <Moon size={22} />,
-  "02d": <CloudSun size={22} />,
-  "02n": <CloudMoon size={22} />,
-  "03d": <Cloud size={22} />,
-  "03n": <Cloud size={22} />,
-  "04d": <Cloud size={22} />,
-  "04n": <Cloud size={22} />,
-  "09d": <CloudRain size={22} />,
-  "09n": <CloudRain size={22} />,
-  "10d": <CloudRain size={22} />,
-  "10n": <CloudRain size={22} />,
-  "11d": <CloudLightning size={22} />,
-  "11n": <CloudLightning size={22} />,
-  "13d": <Snowflake size={22} />,
-  "13n": <Snowflake size={22} />,
-  "50d": <CloudFog size={22} />,
-  "50n": <CloudFog size={22} />,
+export const iconMap: Record<WeatherIconCode, IconSvgElement> = {
+  "01d": Sun,
+  "01n": Moon,
+  "02d": CloudSun,
+  "02n": CloudMoon,
+  "03d": Cloud,
+  "03n": Cloud,
+  "04d": Cloud,
+  "04n": Cloud,
+  "09d": CloudRain,
+  "09n": CloudRain,
+  "10d": CloudRain,
+  "10n": CloudRain,
+  "11d": CloudLightning,
+  "11n": CloudLightning,
+  "13d": Snowflake,
+  "13n": Snowflake,
+  "50d": CloudFog,
+  "50n": CloudFog,
 };

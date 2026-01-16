@@ -1,22 +1,39 @@
-"use client";
+import { createContext, useContext, useEffect, useState } from "react";
 
-import { getInitialLocation } from "@/lib/utils";
-import { createContext, useContext, useState } from "react";
+const DEFAULT_LOCATION: [number, number] = [51.505, -0.09];
+const STORAGE_KEY = "horizoniq-location";
 
-const LocationContext = createContext<
-  | {
-      location: [number, number];
-      setLocation: (location: [number, number]) => void;
+type LocationContextType = {
+  location: [number, number] | null;
+  setLocation: (location: [number, number]) => void;
+};
+
+const LocationContext = createContext<LocationContextType | undefined>(undefined);
+
+export const LocationProvider = ({ children }: { children: React.ReactNode }) => {
+  const [location, setLocationState] = useState<[number, number] | null>(null);
+
+  useEffect(() => {
+    try {
+      const savedItem = localStorage.getItem(STORAGE_KEY);
+      if (savedItem) {
+        const parsed = JSON.parse(savedItem);
+        if (Array.isArray(parsed) && parsed.length === 2) {
+          setLocationState(parsed as [number, number]);
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn("Failed to parse location", e);
     }
-  | undefined
->(undefined);
 
-export const LocationProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
-  const [location, setLocation] = useState(() => getInitialLocation());
+    setLocationState(DEFAULT_LOCATION);
+  }, []);
+
+  const setLocation = (newLocation: [number, number]) => {
+    setLocationState(newLocation);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(newLocation));
+  };
 
   return (
     <LocationContext.Provider value={{ location, setLocation }}>

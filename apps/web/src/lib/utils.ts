@@ -1,18 +1,9 @@
+import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { clsx, type ClassValue } from "clsx";
 
-export const getInitialLocation = (): [number, number] => {
-  if (typeof window === "undefined") {
-    return [51.505, -0.09];
-  }
-
-  const storedLocation = localStorage.getItem("horizoniq");
-  if (storedLocation) {
-    const { latitude, longitude } = JSON.parse(storedLocation);
-    return [latitude, longitude];
-  }
-  return [51.505, -0.09];
-};
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 export const getLocation = async (): Promise<{
   latitude: number;
@@ -23,15 +14,12 @@ export const getLocation = async (): Promise<{
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          localStorage.setItem(
-            "horizoniq",
-            JSON.stringify({ latitude, longitude })
-          );
+          localStorage.setItem("horizoniq", JSON.stringify({ latitude, longitude }));
           resolve({ latitude, longitude });
         },
         (err) => {
           reject(new Error(err.message));
-        }
+        },
       );
     } else {
       reject(new Error("Geolocation is not supported by this browser."));
@@ -45,7 +33,3 @@ export const capFirstLetters = (str: string) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 };
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
