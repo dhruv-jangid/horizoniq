@@ -34,17 +34,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "creator",
         content: "Dhruv Jangid",
       },
-      {
-        rel: "author",
-        href: "https://github.com/dhruv-jangid",
-      },
-      { rel: "icon", type: "image/svg+xml", href: "/logo.svg" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      {
+        rel: "author",
+        href: "https://github.com/dhruv-jangid",
+      },
+      { rel: "icon", type: "image/svg+xml", href: "/logo.svg" },
     ],
   }),
   shellComponent: RootDocument,

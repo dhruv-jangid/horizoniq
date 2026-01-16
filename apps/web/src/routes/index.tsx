@@ -1,7 +1,7 @@
-import { Location01Icon, Sunrise, Sunset } from "@hugeicons/core-free-icons";
+import { Location01Icon, Sunrise, Sunset, TsunamiIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ClientOnly, createFileRoute } from "@tanstack/react-router";
+import { ClientOnly, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { Suspense } from "react";
 import { ForecastChart } from "@/components/forecast-chart";
@@ -57,6 +57,7 @@ function RouteComponent() {
 }
 
 const WeatherDashboard = ({ latitude, longitude }: { latitude: number; longitude: number }) => {
+  const navigate = useNavigate();
   const { data } = useSuspenseQuery(weatherQueryOptions({ latitude, longitude }));
 
   return (
@@ -96,8 +97,12 @@ const WeatherDashboard = ({ latitude, longitude }: { latitude: number; longitude
 
         <div className="flex lg:inline-flex justify-between lg:justify-center items-start gap-4 lg:gap-8 w-full lg:w-auto">
           <Search />
-          <Button size="lg" variant="outline" onClick={() => {}}>
-            BETA
+          <Button
+            size="icon-lg"
+            variant="outline"
+            onClick={() => navigate({ to: "/", replace: true })}
+          >
+            <HugeiconsIcon icon={TsunamiIcon} strokeWidth={2} color="#fff" className="size-7" />
           </Button>
         </div>
       </div>

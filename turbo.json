@@ -11,5 +11,6 @@
     "check-types": { "dependsOn": ["^check-types"] },
     "dev": { "cache": false, "persistent": true },
     "in": { "cache": false, "dependsOn": ["^in"] }
-  }
+  },
+  "globalEnv": ["API_URL", "API_SEARCH_URL", "API_KEY"]
 }
