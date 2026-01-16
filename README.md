@@ -2,7 +2,7 @@
 
 > Know what's near, forecasts clear
 
-A modern, responsive weather application built with TanStack Start and React 19 that provides real-time weather information and forecasts with an elegant user interface.
+A modern, responsive weather application built with TanStack Start and React that provides real-time weather information and forecasts with an elegant user interface.
 
 ## Features
 
@@ -19,15 +19,15 @@ A modern, responsive weather application built with TanStack Start and React 19 
 ## Tech Stack
 
 - Frontend:
-  - TanStack Start 1.150.0 with React 19
+  - TanStack Start with React
   - TanStack Router for file-based routing
-  - TanStack Query (React Query) for data fetching and caching
-  - TypeScript for type safety
-  - Tailwind CSS 4 for styling
+  - TanStack Query for data fetching and caching
+  - TypeScript
+  - Tailwind CSS for styling
   - Recharts for data visualization
   - Leaflet & React Leaflet for maps
   - Vite as the build tool
-  - Nitro for server functions (Vercel preset)
+  - Nitro for server functions
 
 - Development:
   - Bun as package manager
@@ -38,7 +38,7 @@ A modern, responsive weather application built with TanStack Start and React 19 
 
 ### Prerequisites
 
-- Bun (v1.3.6 or higher)
+- Bun
 - OpenWeatherMap API key
 
 ### Installation
@@ -86,15 +86,6 @@ Create a production build:
 bun build
 ```
 
-### Preview Production Build
-
-Preview the production build locally:
-
-```bash
-cd apps/web
-bun preview
-```
-
 ## Project Structure
 
 ```
@@ -115,26 +106,8 @@ horizoniq/
 - **TanStack Start**: Full-stack React framework with server functions
 - **TanStack Router**: Type-safe routing with file-based route generation
 - **TanStack Query**: Powerful data synchronization for React
-- **Nitro**: Universal server framework (configured for Vercel deployment)
+- **Nitro**: Universal server framework
 - **Vite**: Next-generation frontend build tool
-
-## Screenshots
-
-_[Add screenshots of your application here]_
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgements
 

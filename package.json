@@ -1,13 +1,13 @@
 {
   "name": "horizoniq",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "check-types": "turbo run check-types",
-    "clean": "rm -rf apps/web/node_modules apps/web/.turbo apps/web/.vercel .turbo bun.lock node_modules",
+    "clean": "rm -rf apps/web/node_modules apps/web/.turbo apps/web/.tanstack apps/web/.vercel .turbo bun.lock node_modules",
     "in": "bun i --latest && bun update --latest && turbo in -F web"
   },
   "devDependencies": {
