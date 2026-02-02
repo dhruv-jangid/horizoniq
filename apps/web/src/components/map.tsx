@@ -8,6 +8,7 @@ import {
   MapTileLayer,
   MapTooltip,
 } from "./ui/map";
+import { toast } from "sonner";
 
 const ClickHandler = ({ setLocation }: { setLocation: ([lat, lng]: [number, number]) => void }) => {
   useMapEvent("click", (e) => {
@@ -61,7 +62,7 @@ export const MapComponent = ({
       <MapCircle center={location} radius={200} />
       <MapLocateControl
         onLocationFound={({ latlng }) => setLocation([latlng.lat, latlng.lng])}
-        onLocationError={(error) => console.error(error.message)}
+        onLocationError={() => toast.error("Unable to get location")}
       />
     </GlobalMap>
   );
