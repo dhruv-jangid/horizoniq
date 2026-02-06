@@ -32,86 +32,100 @@ A modern, responsive weather application built with TanStack Start and React tha
 - Development:
   - Bun as package manager
   - Turbo for monorepo management
-  - Biome for linting and formatting
 
-## Getting Started
+# HorizonIQ
 
-### Prerequisites
+Know what's near — forecasts made clear.
 
-- Bun
-- OpenWeatherMap API key
+A modern, responsive weather application built with TanStack Start and React. The app provides current conditions, hourly/daily forecasts, interactive maps, and data visualizations.
 
-### Installation
+## Features
 
-1. Clone the repository:
+- Real-time weather data (temperature, humidity, wind, etc.)
+- Hourly and daily forecasts
+- Interactive maps using Leaflet
+- Responsive UI with theme support (light/dark)
+- Charts for trends (Recharts)
+- Location search and autocomplete
 
-   ```bash
-   git clone https://github.com/yourusername/horizoniq.git
-   cd horizoniq
-   ```
+## Tech Stack
+
+- Frontend: TanStack Start, React, TypeScript, Vite
+- Routing & data: TanStack Router, TanStack Query
+- Maps: Leaflet & React-Leaflet
+- UI & styling: Tailwind CSS, shadcn/components
+- Charts: Recharts
+- Server functions: Nitro (used by TanStack Start)
+
+## Development
+
+- Prerequisites: Node.js (>=18) and `npm` or `pnpm`
+- This repository is a small monorepo; the main app lives in `apps/web`.
+
+### Install & run (local development)
+
+1. Clone the repository and enter the web app folder:
+
+```bash
+git clone https://github.com/dhruv-jangid/horizoniq.git
+cd horizoniq/apps/web
+```
 
 2. Install dependencies:
 
-   ```bash
-   bun install
-   ```
-
-3. Set up environment variables:
-
-   Create a `.env` file in the `apps/web` directory with the following variables:
-
-   ```bash
-   API_URL=https://api.openweathermap.org/data/2.5/
-   API_SEARCH_URL=https://api.openweathermap.org/geo/1.0/direct
-   API_KEY=your_openweathermap_api_key
-   ```
-
-## Usage
-
-### Development
-
-Run the development server:
-
 ```bash
-bun dev
+npm install
+# or: pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+3. Create a `.env` file in `apps/web` with your OpenWeatherMap key:
 
-### Build
-
-Create a production build:
-
-```bash
-bun build
+```env
+API_URL=https://api.openweathermap.org/data/2.5/
+API_SEARCH_URL=https://api.openweathermap.org/geo/1.0/direct
+API_KEY=your_openweathermap_api_key
 ```
 
-## Project Structure
+4. Start the dev server:
+
+```bash
+npm run dev
+# or: pnpm dev
+```
+
+The dev server URL is shown in the terminal (usually http://localhost:5173).
+
+### Build & Preview
+
+```bash
+npm run build
+npm run preview
+# or with pnpm: pnpm build && pnpm preview
+```
+
+## Project Structure (high level)
 
 ```
 horizoniq/
 ├── apps/
-│   └── web/                 # Main application
+│   └── web/                 # Main application (Vite + TanStack Start)
 │       ├── src/
 │       │   ├── components/  # React components
-│       │   ├── routes/      # File-based routes (TanStack Router)
-│       │   ├── server/      # Server functions
-│       │   └── lib/         # Utility functions
+│       │   ├── routes/      # File-based routes
+│       │   ├── server/      # Server utilities and functions
+│       │   └── lib/         # Utilities
 │       └── public/          # Static assets
-└── turbo.json               # Turbo monorepo configuration
+├── turbo.json               # (optional) monorepo config
+└── package.json             # workspace / tooling
 ```
 
-## Key Technologies
+## Notes
 
-- **TanStack Start**: Full-stack React framework with server functions
-- **TanStack Router**: Type-safe routing with file-based route generation
-- **TanStack Query**: Powerful data synchronization for React
-- **Nitro**: Universal server framework
-- **Vite**: Next-generation frontend build tool
+- The web app's scripts are defined in `apps/web/package.json` (dev/build/preview).
+- If you prefer `bun`, some scripts may work with it, but the repo currently uses standard `npm`/`pnpm` scripts for Vite.
 
 ## Acknowledgements
 
 - OpenWeatherMap for weather data
-- Hugeicons for beautiful icons
-- Tailwind CSS for styling
-- TanStack for the amazing framework ecosystem
+- TanStack for the framework libraries
+- Tailwind CSS and shadcn for UI components

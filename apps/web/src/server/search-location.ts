@@ -7,13 +7,12 @@ export const searchLocation = createServerFn({ method: "GET" })
     const { query } = data;
 
     try {
-      const locations = await (
-        await fetch(
-          `${process.env.API_SEARCH_URL}?q=${query}&limit=10&appid=${process.env.API_KEY}`,
-        )
-      ).json();
+      const response = await fetch(
+        `${process.env.API_SEARCH_URL}?q=${query}&limit=10&appid=${process.env.API_KEY}`,
+      );
+      const locations = (await response.json()) as Locations;
 
-      return { locations };
+      return locations;
     } catch (error) {
       if (error instanceof Error) {
         throw new Error(error.message);

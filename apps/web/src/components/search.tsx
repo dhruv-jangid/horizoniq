@@ -1,43 +1,24 @@
 import { Search as SearchIcon, X } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "@/components/providers/locationProvider";
-import { searchLocation } from "@/server/search-location";
 import { Button } from "./ui/button";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "./ui/input-group";
+import { useQuery } from "@tanstack/react-query";
+import { searchLocationQueryOptions } from "@/server/queries";
+import { useDebounce } from "use-debounce";
 
 export const Search = () => {
-  const [suggestions, setSuggestions] = useState<
-    {
-      name: string;
-      country: string;
-      lat: number;
-      lon: number;
-    }[]
-  >([]);
   const { setLocation } = useLocation();
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [debouncedQuery] = useDebounce(query, 500);
 
-  useEffect(() => {
-    const fetchSuggestions = async () => {
-      const { locations } = await searchLocation({ data: { query } });
-
-      setSuggestions(locations);
-    };
-
-    if (query.trim()) {
-      const debounce = setTimeout(fetchSuggestions, 500);
-      return () => clearTimeout(debounce);
-    } else {
-      setSuggestions([]);
-    }
-  }, [query]);
+  const { data = [] } = useQuery(searchLocationQueryOptions({ query: debouncedQuery }));
 
   const handleSearchClose = () => {
     setIsOpen(false);
     setQuery("");
-    setSuggestions([]);
   };
 
   return (
@@ -74,11 +55,11 @@ export const Search = () => {
               </InputGroupAddon>
             </InputGroup>
 
-            {suggestions.length > 0 && (
+            {data.length > 0 && (
               <ul className="mt-2 bg-muted text-black rounded-xl shadow-xl overflow-y-auto max-h-96">
-                {suggestions.map((place) => (
+                {data.map((place) => (
                   <li
-                    key={place.lat}
+                    key={`${place.lat}-${place.lon}`}
                     className="py-3.5 px-5 leading-tight tracking-tight text-shadow-none hover:bg-muted-foreground hover:text-white cursor-pointer"
                     onClick={() => {
                       setQuery("");

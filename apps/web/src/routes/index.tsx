@@ -10,7 +10,7 @@ import { useLocation } from "@/components/providers/locationProvider";
 import { Search } from "@/components/search";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { weatherQueryOptions } from "@/server/get-weather";
+import { weatherQueryOptions } from "@/server/queries";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,

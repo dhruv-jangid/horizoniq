@@ -1,26 +1,6 @@
-import { queryOptions } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { capFirstLetters } from "@/lib/utils";
-
-const STALE_GC_TIME = 3600 * 1000;
-const REFETCH_INTERVAL = 1000 * 60 * 5;
-
-export const weatherQueryOptions = ({
-  latitude,
-  longitude,
-}: {
-  latitude: number;
-  longitude: number;
-}) =>
-  queryOptions({
-    queryKey: ["weather", latitude, longitude],
-    queryFn: () => getWeather({ data: { latitude, longitude } }),
-    staleTime: STALE_GC_TIME,
-    gcTime: STALE_GC_TIME,
-    refetchInterval: REFETCH_INTERVAL,
-    placeholderData: (prevData) => prevData,
-  });
 
 export const getWeather = createServerFn({ method: "GET" })
   .inputValidator(z.object({ latitude: z.number(), longitude: z.number() }))
