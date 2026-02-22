@@ -1,5 +1,3 @@
-export {};
-
 declare global {
   type WeatherResponse = {
     currentWeather: {
@@ -109,3 +107,5 @@ declare global {
     local_names?: Record<string, string>;
   }[];
 }
+
+export {};
